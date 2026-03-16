@@ -26,7 +26,7 @@ export const SITE_CONTENT: SiteContent = {
     specialty: "Student & Lifelong Learner",
     summary:
       "I am a student from MAN 1 Banda Aceh who has a strong passion for learning, growing, and trying new things. I believe that every day is an opportunity to improve myself and become a better person.",
-    email: "your.email@example.com",
+    email: "puputimut2026@gmail.com",
   },
   experience: [
     {
