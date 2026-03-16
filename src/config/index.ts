@@ -5,7 +5,7 @@ export const SITE_CONFIG: SiteConfig = {
   author: "Eviana Putri Zarfi",
   description: "I am a student from MAN 1 Banda Aceh with a strong passion for learning, growing, and trying new things.",
   lang: "en",
-  siteLogo: "/Eviana-foto.jpeg", 
+  siteLogo: "/favicon.png", 
   navLinks: [
     { text: "Skills", href: "#experience" },
     { text: "Goals", href: "#projects" },
