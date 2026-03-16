@@ -98,7 +98,6 @@ const ogImgUrl = canonicalURL + socialImage;
     <Footer author={author} socialLinks={socialLinks} />
     
     <script>
-      // We use 'astro:page-load' so the animation works even after you click the Language Toggle!
       document.addEventListener("astro:page-load", () => {
         const observer = new IntersectionObserver(
           (entries) => {
@@ -113,7 +112,7 @@ const ogImgUrl = canonicalURL + socialImage;
               }
             });
           },
-          { threshold: 0.15 } // Triggers when 15% of the section is visible
+          { threshold: 0.15 }
         );
 
         // 1. Find all sections
