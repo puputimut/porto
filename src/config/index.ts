@@ -5,7 +5,7 @@ export const SITE_CONFIG: SiteConfig = {
   author: "Eviana Putri Zarfi",
   description: "I am a student from MAN 1 Banda Aceh with a strong passion for learning, growing, and trying new things.",
   lang: "en",
-  siteLogo: "/alejandro-small.jpg", 
+  siteLogo: "/Eviana-foto.jpeg", 
   navLinks: [
     { text: "Skills", href: "#experience" },
     { text: "Goals", href: "#projects" },
@@ -91,6 +91,6 @@ I enjoy learning many things that can broaden my knowledge and experiences. For 
 Even though my journey is still long, I always try to learn new skills, gain new experiences, and open opportunities for a better future. I believe that with effort and a strong desire to learn, everyone can achieve their dreams.
 
 For me, every small step taken today will bring us closer to a better future.`,
-    image: "/alejandro-big.jpg",
+    image: "/Eviana-foto.jpg",
   },
 };
