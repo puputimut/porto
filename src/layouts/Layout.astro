@@ -51,10 +51,9 @@ const ogImgUrl = canonicalURL + socialImage;
 
 <script>
   window.addEventListener("load", () => {
-    const loader = document.getElementById("loading-screen");
-    const textContainer = document.getElementById("loading-text");
-
-    if (!loader || !textContainer) return;
+    // This forces TypeScript to accept that these elements are real and not null
+    const loader = document.getElementById("loading-screen") as HTMLElement;
+    const textContainer = document.getElementById("loading-text") as HTMLElement;
 
     const textToType = "EVIANA PUTRI ZARFI...";
     const typingSpeed = 60; 
