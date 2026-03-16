@@ -7,20 +7,20 @@ const { title = "Detail Selengkapnya" } = Astro.props;
 ---
 
 <div class="mb-4 border-b border-neutral/20 pb-4">
-  <details class="group cursor-pointer">
+  <details class="group cursor-pointer overflow-hidden">
     <summary class="flex list-none items-center justify-between font-serif text-xl font-medium text-white transition-colors hover:text-primary">
-      <span class="transition-all duration-500 ease-in-out group-open:translate-x-4 group-open:opacity-0">
+      <span class="transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-open:-translate-y-2 group-open:opacity-0">
         {title}
       </span>
       
-      <span class="transition-transform duration-500 group-open:rotate-180 text-primary">
+      <span class="transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-open:rotate-180 text-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </span>
     </summary>
     
-    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-in-out group-open:grid-rows-[1fr]">
-      <div class="overflow-hidden">
-        <div class="pt-6 opacity-0 transition-opacity duration-700 delay-100 group-open:opacity-100">
+    <div class="max-h-0 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-open:max-h-[1000px] group-open:opacity-100">
+      <div class="transform translate-y-[-20px] transition-transform duration-500 ease-out group-open:translate-y-0 pt-4">
+        <div class="text-neutral leading-relaxed">
           <slot />
         </div>
       </div>
