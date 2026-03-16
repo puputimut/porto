@@ -12,9 +12,8 @@ export const SITE_CONFIG: SiteConfig = {
     { text: "About", href: "#about" },
   ],
   socialLinks: [
-    { text: "Instagram", href: "#" },
-    { text: "LinkedIn", href: "#" },
-    { text: "Github", href: "#" },
+    { text: "Instagram", href: "https://instagram.com/zrfievnaptri_" },
+    { text: "Github", href: "https://github.com/puputimut" },
   ],
   socialImage: "/zen-og.png",
   canonicalURL: "https://your-website-url.vercel.app", 
@@ -26,7 +25,7 @@ export const SITE_CONTENT: SiteContent = {
     specialty: "Student & Lifelong Learner",
     summary:
       "I am a student from MAN 1 Banda Aceh who has a strong passion for learning, growing, and trying new things. I believe that every day is an opportunity to improve myself and become a better person.",
-    email: "puputimut2026@gmail.com",
+    email: "evianaputrizarfi@gmail.com",
   },
   experience: [
     {
