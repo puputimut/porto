@@ -1,22 +1,24 @@
 ---
 interface Props {
-  title: string;
-  content: string;
+  title?: string; // We'll make this optional since we have a default
 }
 
-const { title, content } = Astro.props;
+const { title = "Detail Selengkapnya" } = Astro.props;
 ---
 
 <div class="mb-4 border-b border-neutral/20 pb-4">
   <details class="group cursor-pointer">
     <summary class="flex list-none items-center justify-between font-serif text-xl font-medium text-white transition-colors hover:text-primary">
-      {title}
+      <span class="transition-opacity duration-300 group-open:invisible group-open:opacity-0">
+        {title}
+      </span>
+      
       <span class="transition-transform duration-300 group-open:rotate-180 text-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </span>
     </summary>
-    <div class="mt-4 text-neutral leading-relaxed">
-      {content}
-    </div>
+    
+    <div class="mt-4 text-neutral leading-relaxed animate-in fade-in duration-500">
+      <slot /> </div>
   </details>
 </div>
