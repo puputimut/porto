@@ -43,6 +43,23 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta property="twitter:image" content={ogImgUrl} />
   </head>
   <body class="bg-black font-sans">
+  <div id="loading-screen" class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a] transition-opacity duration-500">
+  <h2 class="animate-pulse font-serif text-3xl font-bold tracking-widest text-white">EVIANA.</h2>
+</div>
+
+<script>
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loading-screen");
+    if (loader) {
+      setTimeout(() => {
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 500);
+      }, 800);
+    }
+  });
+</script>
     <Header siteLogo={siteLogo} navLinks={navLinks} />
     <main class="mx-auto max-w-3xl px-5">
       <slot />
