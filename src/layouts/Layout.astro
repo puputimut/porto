@@ -97,5 +97,39 @@ const ogImgUrl = canonicalURL + socialImage;
     </main>
     <Footer author={author} socialLinks={socialLinks} />
     
+    <script>
+      // We use 'astro:page-load' so the animation works even after you click the Language Toggle!
+      document.addEventListener("astro:page-load", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // When the section enters the screen, reveal it!
+                entry.target.classList.remove("opacity-0", "translate-y-12");
+                entry.target.classList.add("opacity-100", "translate-y-0");
+                
+                // Stop observing so it only animates once per page load
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 } // Triggers when 15% of the section is visible
+        );
+
+        // 1. Find all sections
+        // 2. Hide them slightly lower on the page
+        // 3. Tell the observer to watch them
+        document.querySelectorAll("section").forEach((section) => {
+          section.classList.add(
+            "transition-all", 
+            "duration-1000", 
+            "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]", 
+            "opacity-0", 
+            "translate-y-12"
+          );
+          observer.observe(section);
+        });
+      });
+    </script>
   </body>
 </html>
