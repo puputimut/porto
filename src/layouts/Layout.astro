@@ -4,6 +4,7 @@ import "@fontsource/be-vietnam-pro";
 import "@fontsource-variable/gabarito";
 import { SITE_CONFIG } from "@config";
 import Footer from "@components/Footer.astro";
+import Translate from "@components/Translate.astro";
 
 const {
   title,
@@ -27,7 +28,7 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
@@ -43,57 +44,58 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta property="twitter:image" content={ogImgUrl} />
   </head>
   <body class="bg-black font-sans">
-  <div id="loading-screen" class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a] transition-opacity duration-500">
-  <h2 class="font-serif text-3xl font-bold tracking-widest text-white">
-    <span id="loading-text"></span><span class="animate-pulse">_</span>
-  </h2>
-</div>
+    <div id="loading-screen" class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a] transition-opacity duration-500">
+      <h2 class="font-serif text-3xl font-bold tracking-widest text-white">
+        <span id="loading-text"></span><span class="animate-pulse">_</span>
+      </h2>
+    </div>
 
-<script>
-  window.addEventListener("load", () => {
-    // This forces TypeScript to accept that these elements are real and not null
-    const loader = document.getElementById("loading-screen") as HTMLElement;
-    const textContainer = document.getElementById("loading-text") as HTMLElement;
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loading-screen") as HTMLElement;
+        const textContainer = document.getElementById("loading-text") as HTMLElement;
 
-    const textToType = "EVIANA PUTRI ZARFI...";
-    const typingSpeed = 60; 
-    const pauseBetweenLoops = 50;
-    const maxLoops = 3;
+        const textToType = "EVIANA PUTRI ZARFI...";
+        const typingSpeed = 60; 
+        const pauseBetweenLoops = 50;
+        const maxLoops = 3;
 
-    let charIndex = 0;
-    let loopCount = 0;
+        let charIndex = 0;
+        let loopCount = 0;
 
-    function typeWriter() {
-      if (charIndex < textToType.length) {
-        textContainer.innerHTML += textToType.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeWriter, typingSpeed);
-      } else {
-        loopCount++;
-        if (loopCount < maxLoops) {
-          setTimeout(() => {
-            textContainer.innerHTML = "";
-            charIndex = 0;
-            typeWriter();
-          }, pauseBetweenLoops);
-        } else {
-          setTimeout(() => {
-            loader.style.opacity = "0";
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 500);
-          }, 800);
+        function typeWriter() {
+          if (charIndex < textToType.length) {
+            textContainer.innerHTML += textToType.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, typingSpeed);
+          } else {
+            loopCount++;
+            if (loopCount < maxLoops) {
+              setTimeout(() => {
+                textContainer.innerHTML = "";
+                charIndex = 0;
+                typeWriter();
+              }, pauseBetweenLoops);
+            } else {
+              setTimeout(() => {
+                loader.style.opacity = "0";
+                setTimeout(() => {
+                  loader.style.display = "none";
+                }, 500);
+              }, 800);
+            }
+          }
         }
-      }
-    }
+        typeWriter();
+      });
+    </script>
 
-    typeWriter();
-  });
-</script>
     <Header siteLogo={siteLogo} navLinks={navLinks} />
     <main class="mx-auto max-w-3xl px-5">
       <slot />
     </main>
     <Footer author={author} socialLinks={socialLinks} />
+    
+    <Translate />
   </body>
 </html>
