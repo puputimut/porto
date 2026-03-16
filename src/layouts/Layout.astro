@@ -53,6 +53,9 @@ const ogImgUrl = canonicalURL + socialImage;
   window.addEventListener("load", () => {
     const loader = document.getElementById("loading-screen");
     const textContainer = document.getElementById("loading-text");
+
+    if (!loader || !textContainer) return;
+
     const textToType = "EVIANA PUTRI ZARFI...";
     const typingSpeed = 60; 
     const pauseBetweenLoops = 500;
@@ -85,9 +88,7 @@ const ogImgUrl = canonicalURL + socialImage;
       }
     }
 
-    if (loader && textContainer) {
-      typeWriter();
-    }
+    typeWriter();
   });
 </script>
     <Header siteLogo={siteLogo} navLinks={navLinks} />
