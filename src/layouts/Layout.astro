@@ -4,6 +4,7 @@ import "@fontsource/be-vietnam-pro";
 import "@fontsource-variable/gabarito";
 import { SITE_CONFIG } from "@config";
 import Footer from "@components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 const {
   title,
@@ -31,6 +32,7 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
+    <ViewTransitions />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
