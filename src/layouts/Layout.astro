@@ -44,19 +44,49 @@ const ogImgUrl = canonicalURL + socialImage;
   </head>
   <body class="bg-black font-sans">
   <div id="loading-screen" class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a] transition-opacity duration-500">
-  <h2 class="animate-pulse font-serif text-3xl font-bold tracking-widest text-white">EVIANA.</h2>
+  <h2 class="font-serif text-3xl font-bold tracking-widest text-white">
+    <span id="loading-text"></span><span class="animate-pulse">_</span>
+  </h2>
 </div>
 
 <script>
   window.addEventListener("load", () => {
     const loader = document.getElementById("loading-screen");
-    if (loader) {
-      setTimeout(() => {
-        loader.style.opacity = "0";
-        setTimeout(() => {
-          loader.style.display = "none";
-        }, 500);
-      }, 800);
+    const textContainer = document.getElementById("loading-text");
+    const textToType = "EVIANA PUTRI ZARFI...";
+    const typingSpeed = 60; 
+    const pauseBetweenLoops = 500;
+    const maxLoops = 3;
+
+    let charIndex = 0;
+    let loopCount = 0;
+
+    function typeWriter() {
+      if (charIndex < textToType.length) {
+        textContainer.innerHTML += textToType.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, typingSpeed);
+      } else {
+        loopCount++;
+        if (loopCount < maxLoops) {
+          setTimeout(() => {
+            textContainer.innerHTML = "";
+            charIndex = 0;
+            typeWriter();
+          }, pauseBetweenLoops);
+        } else {
+          setTimeout(() => {
+            loader.style.opacity = "0";
+            setTimeout(() => {
+              loader.style.display = "none";
+            }, 500);
+          }, 800);
+        }
+      }
+    }
+
+    if (loader && textContainer) {
+      typeWriter();
     }
   });
 </script>
