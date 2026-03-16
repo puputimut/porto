@@ -91,6 +91,6 @@ I enjoy learning many things that can broaden my knowledge and experiences. For 
 Even though my journey is still long, I always try to learn new skills, gain new experiences, and open opportunities for a better future. I believe that with effort and a strong desire to learn, everyone can achieve their dreams.
 
 For me, every small step taken today will bring us closer to a better future.`,
-    image: "/Eviana-foto.jpg",
+    image: "/Eviana-foto.jpeg",
   },
 };
