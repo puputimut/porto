@@ -7,60 +7,21 @@ const { title = "More Details" } = Astro.props;
 ---
 
 <div class="mb-4 border-b border-neutral/20 pb-4 bg-pink-200 p-6 rounded-xl">
-  <details class="group cursor-pointer overflow-hidden">
+  <details class="group cursor-pointer [&_summary::-webkit-details-marker]:hidden">
     <summary class="flex list-none items-center justify-between font-serif text-xl font-medium text-slate-900 transition-colors hover:text-primary">
-      <span class="transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-open:-translate-y-2 group-open:opacity-0">
+      <span>
         {title}
       </span>
 
-      <span class="transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-open:rotate-180 text-primary">
+      <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m6 9 6 6 6-6"/>
         </svg>
       </span>
     </summary>
 
-    <div class="grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" data-content>
-      <div class="overflow-hidden">
-        <div class="translate-y-[-12px] transform pt-4 transition-transform duration-500 ease-out" data-inner>
-          <div class="text-slate-900 leading-relaxed">
-            <slot />
-          </div>
-        </div>
-      </div>
+    <div class="mt-4 text-slate-900 leading-relaxed">
+      <slot />
     </div>
   </details>
 </div>
-
-<script>
-  document.querySelectorAll("details").forEach((details) => {
-    const summary = details.querySelector("summary")!;
-    const content = details.querySelector("[data-content]") as HTMLElement;
-    const inner = details.querySelector("[data-inner]") as HTMLElement;
-
-    summary.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      if (!details.open) {
-        // Opening
-        details.open = true;
-        requestAnimationFrame(() => {
-          content.classList.replace("grid-rows-[0fr]", "grid-rows-[1fr]");
-          content.classList.replace("opacity-0", "opacity-100");
-          inner.classList.replace("translate-y-[-12px]", "translate-y-0");
-        });
-      } else {
-        // Closing
-        content.classList.replace("grid-rows-[1fr]", "grid-rows-[0fr]");
-        content.classList.replace("opacity-100", "opacity-0");
-        inner.classList.replace("translate-y-0", "translate-y-[-12px]");
-
-        content.addEventListener(
-          "transitionend",
-          () => { details.open = false; },
-          { once: true }
-        );
-      }
-    });
-  });
-</script>
