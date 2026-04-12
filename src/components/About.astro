@@ -124,3 +124,19 @@ const text = {
     </div>
   </div>
 </Section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // Find all the accordions we just created
+    const accordions = document.querySelectorAll("details.group");
+    
+    accordions.forEach((details) => {
+      const summary = details.querySelector("summary");
+      if (summary) {
+        // Clone the summary to strip away the template's broken event listeners
+        const cleanSummary = summary.cloneNode(true);
+        summary.parentNode?.replaceChild(cleanSummary, summary);
+      }
+    });
+  });
+</script>
