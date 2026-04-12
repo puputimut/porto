@@ -79,9 +79,9 @@ const { siteLogo, navLinks } = Astro.props;
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("href") === `#${entry.target.id}`) {
-              item.classList.add("text-white", "md:after:opacity-100");
+              item.classList.add("text-slate-900", "md:after:opacity-100");
             } else {
-              item.classList.remove("text-white", "md:after:opacity-100");
+              item.classList.remove("text-slate-900", "md:after:opacity-100");
             }
           });
         }
