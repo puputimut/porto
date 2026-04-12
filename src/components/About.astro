@@ -6,9 +6,34 @@ import type { AboutProps, HeroProps } from "@types";
 type Props = AboutProps & Pick<HeroProps, "name">;
 
 const { image, name } = Astro.props;
+
+// Detect which language is active based on the URL
+const pathname = Astro.url.pathname;
+const isId = pathname.startsWith('/id');
+
+// Setup the text dictionaries
+const text = {
+  sectionTitle: isId ? "Mengenal Saya Lebih Dalam" : "Get to Know Me Better",
+  aboutTitle: isId ? "Tentang Saya" : "About Me",
+  aboutDesc: isId 
+    ? "Saya adalah seorang siswi dari MAN 1 Banda Aceh yang memiliki semangat tinggi untuk belajar, berkembang, dan mencoba hal-hal baru. Saya percaya bahwa setiap hari adalah kesempatan untuk memperbaiki diri."
+    : "I am a student from MAN 1 Banda Aceh who has a strong passion for learning, growing, and trying new things. I believe that every day is an opportunity to improve myself.",
+  interestTitle: isId ? "Minat & Pengalaman" : "Interests & Experience",
+  interestList: isId 
+    ? ["Mempelajari Biologi dan memahami proses alam.", "Menulis dan membuat konten edukatif.", "Pengembangan diri dan komunikasi antarpribadi."]
+    : ["Learning Biology and understanding natural processes.", "Writing and creating educational content.", "Self-development and interpersonal communication."],
+  skillsTitle: isId ? "Kemampuan Akademik" : "Academic Abilities",
+  subjects: isId 
+    ? ["Biologi", "Matematika", "B. Inggris", "Fisika", "B. Indonesia", "Kimia"]
+    : ["Biology", "Mathematics", "English", "Physics", "Indonesian", "Chemistry"],
+  read: isId ? ["Membaca", "Buku & Literatur"] : ["Reading", "Books & Literature"],
+  travel: isId ? ["Jalan-jalan", "Mengeksplorasi"] : ["Traveling", "Exploring"],
+  learn: isId ? ["Belajar", "Hal Baru"] : ["Learning", "New Things"],
+  science: isId ? ["Sains", "Pengamat Alam"] : ["Science", "Nature Observer"],
+};
 ---
 
-<Section text="Mengenal Saya Lebih Dalam" href="about">
+<Section text={text.sectionTitle} href="about">
   <div class="flex flex-col gap-10 md:flex-row md:items-start">
     
     <div class="w-full md:w-5/12 flex-shrink-0">
@@ -26,64 +51,49 @@ const { image, name } = Astro.props;
       <div class="space-y-4">
         <details class="group cursor-pointer rounded-xl border border-neutral/20 bg-white/80 p-4 shadow-sm backdrop-blur-sm [&_summary::-webkit-details-marker]:hidden">
           <summary class="flex items-center justify-between font-serif text-lg font-medium text-slate-900">
-            Tentang Saya
+            {text.aboutTitle}
             <span class="transition-transform duration-300 group-open:-rotate-180">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </span>
           </summary>
           <div class="mt-4 leading-relaxed text-slate-700">
-            Saya adalah seorang siswi dari MAN 1 Banda Aceh yang memiliki semangat tinggi untuk belajar, berkembang, dan mencoba hal-hal baru. Saya percaya bahwa setiap hari adalah kesempatan untuk memperbaiki diri.
+            {text.aboutDesc}
           </div>
         </details>
 
         <details class="group cursor-pointer rounded-xl border border-neutral/20 bg-white/80 p-4 shadow-sm backdrop-blur-sm [&_summary::-webkit-details-marker]:hidden">
           <summary class="flex items-center justify-between font-serif text-lg font-medium text-slate-900">
-            Minat & Pengalaman
+            {text.interestTitle}
             <span class="transition-transform duration-300 group-open:-rotate-180">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </span>
           </summary>
           <div class="mt-4 leading-relaxed text-slate-700">
             <ul class="list-inside list-disc space-y-2">
-              <li>Mempelajari Biologi dan memahami proses alam.</li>
-              <li>Menulis dan membuat konten edukatif.</li>
-              <li>Pengembangan diri dan komunikasi antarpribadi.</li>
+              {text.interestList.map((item) => (
+                <li>{item}</li>
+              ))}
             </ul>
           </div>
         </details>
 
         <details class="group cursor-pointer rounded-xl border border-neutral/20 bg-white/80 p-4 shadow-sm backdrop-blur-sm [&_summary::-webkit-details-marker]:hidden" open>
           <summary class="flex items-center justify-between font-serif text-lg font-medium text-slate-900">
-            Kemampuan Akademik
+            {text.skillsTitle}
             <span class="transition-transform duration-300 group-open:-rotate-180">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </span>
           </summary>
           <div class="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div>
-              <div class="mb-1 flex justify-between"><span class="text-sm font-medium text-slate-800">Biologi</span><span class="text-sm font-medium text-slate-800">95%</span></div>
-              <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style="width: 95%"></div></div>
-            </div>
-            <div>
-              <div class="mb-1 flex justify-between"><span class="text-sm font-medium text-slate-800">Matematika</span><span class="text-sm font-medium text-slate-800">90%</span></div>
-              <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style="width: 90%"></div></div>
-            </div>
-            <div>
-              <div class="mb-1 flex justify-between"><span class="text-sm font-medium text-slate-800">B. Inggris</span><span class="text-sm font-medium text-slate-800">85%</span></div>
-              <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style="width: 85%"></div></div>
-            </div>
-            <div>
-              <div class="mb-1 flex justify-between"><span class="text-sm font-medium text-slate-800">Fisika</span><span class="text-sm font-medium text-slate-800">90%</span></div>
-              <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style="width: 90%"></div></div>
-            </div>
-            <div>
-              <div class="mb-1 flex justify-between"><span class="text-sm font-medium text-slate-800">B. Indonesia</span><span class="text-sm font-medium text-slate-800">85%</span></div>
-              <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style="width: 85%"></div></div>
-            </div>
-            <div>
-              <div class="mb-1 flex justify-between"><span class="text-sm font-medium text-slate-800">Kimia</span><span class="text-sm font-medium text-slate-800">90%</span></div>
-              <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style="width: 90%"></div></div>
-            </div>
+            {[95, 90, 85, 90, 85, 90].map((score, index) => (
+              <div>
+                <div class="mb-1 flex justify-between">
+                  <span class="text-sm font-medium text-slate-800">{text.subjects[index]}</span>
+                  <span class="text-sm font-medium text-slate-800">{score}%</span>
+                </div>
+                <div class="h-2.5 w-full rounded-full bg-pink-100"><div class="h-2.5 rounded-full bg-pink-500" style={`width: ${score}%`}></div></div>
+              </div>
+            ))}
           </div>
         </details>
       </div>
@@ -91,23 +101,23 @@ const { image, name } = Astro.props;
       <div class="grid grid-cols-2 gap-4 mt-2">
         <div class="flex flex-col items-center justify-center rounded-xl border border-neutral/20 bg-white/80 p-4 text-center shadow-sm transition-all hover:border-pink-300 hover:shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="mb-2 text-pink-500" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-          <span class="font-bold text-slate-900">Membaca</span>
-          <span class="text-xs text-slate-500">Buku & Literatur</span>
+          <span class="font-bold text-slate-900">{text.read[0]}</span>
+          <span class="text-xs text-slate-500">{text.read[1]}</span>
         </div>
         <div class="flex flex-col items-center justify-center rounded-xl border border-neutral/20 bg-white/80 p-4 text-center shadow-sm transition-all hover:border-pink-300 hover:shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="mb-2 text-pink-500" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 5-3 3-3-1-2 2 5 2 2 5 2-2-1-3 3-3 5 6 1.2-.7c.4-.2.7-.6.6-1.1z"/></svg>
-          <span class="font-bold text-slate-900">Jalan-jalan</span>
-          <span class="text-xs text-slate-500">Mengeksplorasi</span>
+          <span class="font-bold text-slate-900">{text.travel[0]}</span>
+          <span class="text-xs text-slate-500">{text.travel[1]}</span>
         </div>
         <div class="flex flex-col items-center justify-center rounded-xl border border-neutral/20 bg-white/80 p-4 text-center shadow-sm transition-all hover:border-pink-300 hover:shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="mb-2 text-pink-500" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-          <span class="font-bold text-slate-900">Belajar</span>
-          <span class="text-xs text-slate-500">Hal Baru</span>
+          <span class="font-bold text-slate-900">{text.learn[0]}</span>
+          <span class="text-xs text-slate-500">{text.learn[1]}</span>
         </div>
         <div class="flex flex-col items-center justify-center rounded-xl border border-neutral/20 bg-white/80 p-4 text-center shadow-sm transition-all hover:border-pink-300 hover:shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="mb-2 text-pink-500" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-          <span class="font-bold text-slate-900">Sains</span>
-          <span class="text-xs text-slate-500">Pengamat Alam</span>
+          <span class="font-bold text-slate-900">{text.science[0]}</span>
+          <span class="text-xs text-slate-500">{text.science[1]}</span>
         </div>
       </div>
 
